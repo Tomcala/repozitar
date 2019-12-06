@@ -143,7 +143,24 @@ void histogram(char upravene_pole[], int *velkost_upraveneho, int pole_histogram
         printf("%c", c);
     }
 }
-
+void p(char povodne_pole[], int velkost_povodneho){
+    int i = 0;
+    int pocet1 = 0, pocet2 = 0;
+    if(velkost_povodneho == 0){
+        printf("Sprava nie je nacitana");
+    }
+    else{
+        for(i = 0; i < velkost_povodneho; i++){
+            if(povodne_pole[i] >= 'A' && povodne_pole[i] <= 'Z'){
+                pocet1++;
+            }
+            else if(povodne_pole[i] >= 'a' && povodne_pole[i] <= 'z'){
+                pocet2++;
+            }
+        }
+        printf("%d:%d\n", pocet1, pocet2);
+    }
+}
 int main()
 {
     char povodne_pole[N], upravene_pole[N];
@@ -209,6 +226,9 @@ int main()
                     sifra(upravene_pole, &velkost_upraveneho);
                 }
                 printf("\n");
+                break;
+        case 'p':
+                p(povodne_pole, velkost_povodneho);
                 break;
         case 'k':
             return 0;
