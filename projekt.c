@@ -37,6 +37,41 @@ void u(char povodne_pole[], char upravene_pole[], int *velkost_upraveneho, int v
     }
     *velkost_upraveneho = k;
 }
+void d(char povodne_pole[], int velkost_povodneho){
+    int dlzka, i = 0, j;
+    scanf("%d", &dlzka);
+    char slovo[dlzka];
+    int pozicia = 0;
+    if(dlzka >= 1 && dlzka <= 100){
+        for(i = 0; i < velkost_povodneho; i++){
+            povodne_pole[velkost_povodneho] = ' ';
+            slovo[pozicia] = povodne_pole[i];
+                   if(pozicia <= dlzka - 1 && slovo[pozicia] == ' '){
+                        pozicia = -1;
+                   }
+                   else if(pozicia == dlzka - 1 && povodne_pole[i + 1] == ' ' ){
+                            for(j = 0; j < dlzka; j++){
+                                if( slovo[j] >= 'A' && slovo[j] <= 'Z'){
+                                    printf("%c", slovo[j]);
+                                }
+                                else{
+                                    printf("%c", slovo[j]);
+                                }
+                            }
+                            pozicia = -1;
+                            putchar('\n');
+                   }
+                   else if(pozicia > dlzka && slovo[pozicia] == ' ' ){
+                        pozicia = -1;
+                   }
+             pozicia++;
+       }
+    }
+    else{
+        printf("Zly vstup");
+    }
+
+}
 int main()
 {
     char povodne_pole[N], upravene_pole[N];
@@ -81,6 +116,9 @@ int main()
                 }
                 printf("\n");
                 break;
+        case 'd':
+            d(povodne_pole, velkost_povodneho);
+            break;
         case 'k':
             return 0;
         }
