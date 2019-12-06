@@ -20,7 +20,23 @@ if((fclose(fr)) == EOF){
     *velkost_povodneho = k;
 
 }
+void u(char povodne_pole[], char upravene_pole[], int *velkost_upraveneho, int velkost_povodneho){
+    int i , k = 0;
+    char c;
+    for(i = 0; i < velkost_povodneho; i++){
+        c = povodne_pole[i];
+        if(c >= 'A' && c <= 'Z'){
 
+            upravene_pole[k] = povodne_pole[i];
+            k++;
+        }
+         if(c >= 'a' && c <= 'z'){
+            upravene_pole[k] = c - 'a' + 'A';
+            k++;
+        }
+    }
+    *velkost_upraveneho = k;
+}
 int main()
 {
     char povodne_pole[N], upravene_pole[N];
@@ -46,6 +62,25 @@ int main()
             }
             printf("\n");
             break;
+        case 'u':
+            if(velkost_povodneho == 0){
+                    printf("Sprava nie je nacitana");
+                }
+                else{
+                u(povodne_pole, upravene_pole, &velkost_upraveneho, velkost_povodneho);
+                }
+                break;
+        case 's':
+                if(velkost_upraveneho == 0){
+                    printf("Nie je k dispozicii upravena sprava");
+                }
+                else{
+                    for(i = 0; i < velkost_upraveneho; i++){
+                        printf("%c", upravene_pole[i]);
+                    }
+                }
+                printf("\n");
+                break;
         case 'k':
             return 0;
         }
