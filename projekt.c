@@ -8,7 +8,7 @@ if((fr = fopen("sifra.txt", "r")) == NULL){
     return ;
 }
 char c;
-int k;
+int k = 0;
 while((c = getc(fr)) != EOF){
     povodne_pole[k] = c;
     k++;
@@ -20,17 +20,31 @@ if((fclose(fr)) == EOF){
     *velkost_povodneho = k;
 
 }
+
 int main()
 {
     char povodne_pole[N], upravene_pole[N];
     int velkost_povodneho = 0, velkost_upraveneho = 0;
     FILE *fr;
     char c;
+    int i;
 
     while(scanf("%c", &c) == 1){
         switch (c){
-        case 'u':
+        case 'n':
             n(povodne_pole, &velkost_povodneho);
+            printf("\n");
+            break;
+        case 'v':
+            if(velkost_povodneho == 0){
+                printf("Sprava nie je nacitana");
+            }
+            else{
+                for(i = 0; i < velkost_povodneho; i++){
+                    printf("%c", povodne_pole[i]);
+                }
+            }
+            printf("\n");
             break;
         case 'k':
             return 0;
