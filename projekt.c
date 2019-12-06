@@ -4,4 +4,6 @@ int main{
 char povodne_pole[N], upravene_pole[N];
 int velkost_povodneho = 0; velkost_upraveneho = 0;
 FILE *fr;
+
+switch
 }
