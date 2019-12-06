@@ -143,6 +143,34 @@ void histogram(char upravene_pole[], int *velkost_upraveneho, int pole_histogram
         printf("%c", c);
     }
 }
+void z(char upravene_pole[], int *velkost_upraveneho){
+    int z, k, i = 0, j = 0;
+    int *velkost_retazca;
+    scanf("%d %d", &z, &k);
+    int y = (k - z) + 1;
+    int x = *velkost_upraveneho - y;
+    char pole[x];
+    char c = upravene_pole[z];
+    if(c < 'A' || c > 'Z'){
+        printf("Retazec nie je mozne zmazat\n");
+    }
+    else{
+        for(i = 0; i < *velkost_upraveneho; i++){
+            if(i >= z && i <= k){
+            }
+            else {
+                pole[j] = upravene_pole[i];
+                j++;
+            }
+        }
+        printf("Retazec sa zmazal\n");
+    }
+    for(i = 0; i < x; i++){
+        upravene_pole[i] = pole[i];
+    }
+    *velkost_upraveneho = x;
+}
+
 void p(char povodne_pole[], int velkost_povodneho){
     int i = 0;
     int pocet1 = 0, pocet2 = 0;
@@ -229,6 +257,9 @@ int main()
                 break;
         case 'p':
                 p(povodne_pole, velkost_povodneho);
+                break;
+        case 'z':
+                z(upravene_pole, &velkost_upraveneho);
                 break;
         case 'k':
             return 0;
