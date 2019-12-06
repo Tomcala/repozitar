@@ -73,6 +73,39 @@ void d(char povodne_pole[], int velkost_povodneho){
     }
 
 }
+void sifra(char upravene_pole[], int *velkost_upraveneho){
+    int i, n;
+    char c;
+    char pole_sifry[*velkost_upraveneho];
+    scanf("%d", &n);
+    if(n >= 1 && n <= 25){
+        for(i = 0; i < *velkost_upraveneho; i++){
+            c = upravene_pole[i];
+            if(c >= 'A' + n && c <= 'Z'){
+                c = c - n;
+                printf("%c", c);
+                pole_sifry[i];
+            }
+            else{
+                c = c + 'Z' - n - 'A' + 1;
+                printf("%c",c);
+                pole_sifry[i];
+            }
+        }
+    }
+    else{
+        printf("Zly kluc");
+    }
+
+    char x;
+    scanf("%c", &x);
+    int k, pocet = 0;
+    for(i = 0; k <= *velkost_upraveneho; k++){
+       if(pole_sifry[i] = x){
+        pocet++;
+       }
+    }
+}
 void histogram(char upravene_pole[], int *velkost_upraveneho, int pole_histogramu[]){
     char c;
     int i = 0, j, k = 100;
@@ -165,6 +198,15 @@ int main()
                 }
                 else{
                     histogram(upravene_pole, &velkost_upraveneho, pole_histogramu);
+                }
+                printf("\n");
+                break;
+        case 'c':
+                if(velkost_upraveneho == 0){
+                    printf("Nie je k dispozicii upravena sprava");
+                }
+                else{
+                    sifra(upravene_pole, &velkost_upraveneho);
                 }
                 printf("\n");
                 break;
