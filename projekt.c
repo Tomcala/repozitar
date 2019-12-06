@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define N 1000
+#define M 26
 
 void n(char povodne_pole[], int *velkost_povodneho){
 FILE *fr;
@@ -72,9 +73,48 @@ void d(char povodne_pole[], int velkost_povodneho){
     }
 
 }
+void histogram(char upravene_pole[], int *velkost_upraveneho, int pole_histogramu[]){
+    char c;
+    int i = 0, j, k = 100;
+    float n = 0, x = *velkost_upraveneho, percento;
+        for(c = 'A'; c <= 'Z'; c++){
+            for(j = 0; j < *velkost_upraveneho; j++ ){
+                if(upravene_pole[j] == c){
+                    n++;
+                }
+            }
+            pole_histogramu[i] = n;
+            i++;
+            n = 0;
+        }
+        for(i = 0; i <= 10; i++){
+            for(j = 0; j < M; j++){
+                n = pole_histogramu[j];
+                percento = n*100/x;
+                if(percento == 0){
+                    printf(" ");
+                }
+                else{
+                    if(percento > k ){
+                        printf("*");
+                    }
+                    else{
+                        printf(" ");
+                    }
+                }
+            }
+            printf("\n");
+            k -= 10;
+        }
+    for(c = 'A'; c <= 'Z'; c++){
+        printf("%c", c);
+    }
+}
+
 int main()
 {
     char povodne_pole[N], upravene_pole[N];
+    int pole_histogramu[M];
     int velkost_povodneho = 0, velkost_upraveneho = 0;
     FILE *fr;
     char c;
@@ -119,6 +159,15 @@ int main()
         case 'd':
             d(povodne_pole, velkost_povodneho);
             break;
+        case 'h':
+                if(velkost_upraveneho == 0){
+                    printf("Nie je k dispozicii upravena sprava");
+                }
+                else{
+                    histogram(upravene_pole, &velkost_upraveneho, pole_histogramu);
+                }
+                printf("\n");
+                break;
         case 'k':
             return 0;
         }
