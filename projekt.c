@@ -2,7 +2,7 @@
 #define N 1000
 #define M 26
 
-void n(char povodne_pole[], int *velkost_povodneho){
+void nacitanie(char povodne_pole[], int *velkost_povodneho){
 FILE *fr;
 if((fr = fopen("sifra.txt", "r")) == NULL){
     printf("Subor sa nepodarilo otvorit");
@@ -21,7 +21,7 @@ if((fclose(fr)) == EOF){
     *velkost_povodneho = k;
 
 }
-void u(char povodne_pole[], char upravene_pole[], int *velkost_upraveneho, int velkost_povodneho){
+void uprava_pola(char povodne_pole[], char upravene_pole[], int *velkost_upraveneho, int velkost_povodneho){
     int i , k = 0;
     char c;
     for(i = 0; i < velkost_povodneho; i++){
@@ -38,7 +38,7 @@ void u(char povodne_pole[], char upravene_pole[], int *velkost_upraveneho, int v
     }
     *velkost_upraveneho = k;
 }
-void d(char povodne_pole[], int velkost_povodneho){
+void dlzka_slov(char povodne_pole[], int velkost_povodneho){
     int dlzka, i = 0, j;
     scanf("%d", &dlzka);
     char slovo[dlzka];
@@ -73,7 +73,7 @@ void d(char povodne_pole[], int velkost_povodneho){
     }
 
 }
-void sifra(char upravene_pole[], int *velkost_upraveneho){
+void cesarova_sifra(char upravene_pole[], int *velkost_upraveneho){
     int i, n;
     char c;
     char pole_sifry[*velkost_upraveneho];
@@ -143,7 +143,7 @@ void histogram(char upravene_pole[], int *velkost_upraveneho, int pole_histogram
         printf("%c", c);
     }
 }
-void z(char upravene_pole[], int *velkost_upraveneho){
+void zmazanie_pola(char upravene_pole[], int *velkost_upraveneho){
     int z, k, i = 0, j = 0;
     int *velkost_retazca;
     scanf("%d %d", &z, &k);
@@ -171,7 +171,7 @@ void z(char upravene_pole[], int *velkost_upraveneho){
     *velkost_upraveneho = x;
 }
 
-void p(char povodne_pole[], int velkost_povodneho){
+void pomer_pismen(char povodne_pole[], int velkost_povodneho){
     int i = 0;
     int pocet1 = 0, pocet2 = 0;
     if(velkost_povodneho == 0){
@@ -201,7 +201,7 @@ int main()
     while(scanf("%c", &c) == 1){
         switch (c){
         case 'n':
-            n(povodne_pole, &velkost_povodneho);
+            nacitanie(povodne_pole, &velkost_povodneho);
             printf("\n");
             break;
         case 'v':
@@ -220,7 +220,7 @@ int main()
                     printf("Sprava nie je nacitana");
                 }
                 else{
-                u(povodne_pole, upravene_pole, &velkost_upraveneho, velkost_povodneho);
+                uprava_pola(povodne_pole, upravene_pole, &velkost_upraveneho, velkost_povodneho);
                 }
                 break;
         case 's':
@@ -235,7 +235,7 @@ int main()
                 printf("\n");
                 break;
         case 'd':
-            d(povodne_pole, velkost_povodneho);
+            dlzka_slov(povodne_pole, velkost_povodneho);
             break;
         case 'h':
                 if(velkost_upraveneho == 0){
@@ -251,15 +251,15 @@ int main()
                     printf("Nie je k dispozicii upravena sprava");
                 }
                 else{
-                    sifra(upravene_pole, &velkost_upraveneho);
+                    cesarova_sifra(upravene_pole, &velkost_upraveneho);
                 }
                 printf("\n");
                 break;
         case 'p':
-                p(povodne_pole, velkost_povodneho);
+                pomer_pismen(povodne_pole, velkost_povodneho);
                 break;
         case 'z':
-                z(upravene_pole, &velkost_upraveneho);
+                zmazanie_pola(upravene_pole, &velkost_upraveneho);
                 break;
         case 'k':
             return 0;
